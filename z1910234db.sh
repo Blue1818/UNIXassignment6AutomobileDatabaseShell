@@ -60,8 +60,10 @@ parseCmd ()
     local numC=${#1}
     #Array of integers for index of spaces.
     local index
-    
+    #Total number of arguments
+    numArg=0
 
+    
 
 
 
@@ -74,7 +76,7 @@ then
     #Then we are in interactive mode:
     #Prompt the user for commands and assign them to the input string array
     read -p "Enter command: " dbname cmd argLine
-    
+     
     #LOOP til input is quit
     while [ dbname = "quit" ]
     do 
@@ -90,8 +92,11 @@ then
 else
 	echo "fail"
     #Load command line arguments 
-	
-
+	numArg=0
+    for parm
+    do
+        param[numArg]=$parm
+    done
     #Execute commands
 
 fi #End If
