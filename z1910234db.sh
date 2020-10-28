@@ -43,8 +43,7 @@ count()
 #check if theres any arguments from the command line
 
 #If no arguments are passed:
-echo "$#"
-if [ $# -ne 1 ]; then
+if [ $# -eq 0 ]; then
 	echo "success $0"
     
     #Then we are in interactive mode:
