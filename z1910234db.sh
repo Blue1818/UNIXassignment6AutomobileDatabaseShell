@@ -39,7 +39,8 @@ count()
 #check if theres any arguments from the command line
 
 #If no arguments are passed:
-
+if [ $# -ne 1 ]; then
+	echo "success $0"
     #Then we are in interactive mode:
     #Prompt the user for commands and assign them to the input string array
 
@@ -52,12 +53,13 @@ count()
 
     #END LOOP
 
-#Else
+else
+	echo "fail"
     #Load command line arguments 
-
+	
 
     #Execute commands
 
-#End If
+fi #End If
 
 #exit program
