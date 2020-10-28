@@ -52,12 +52,23 @@ testfile ()
     fi
 }
 
-pram[0]=1
-pram[1]=2
-pram[2]=3
-pram[3]=$1
-echo ${pram[0]} ${pram[1]} ${pram[2]} "${pram[3]}"
-return 0
+#Passes in argument Line and parses it into a global array of strings called param[]
+parseCmd ()
+{
+    #numC = number of characters in argument line
+    local numC=${#1}
+    local indexx[1]=8
+    index[0]=3
+    index[1]=8
+    echo ${index[0]} ${index[1]}
+
+
+
+
+}
+parseCmd "eh"
+exit
+
 #check if theres any arguments from the command line
 if [ $# -eq 0 ]
 then
