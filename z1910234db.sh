@@ -63,12 +63,16 @@ parseCmd ()
     #Total number of arguments
     numArg=0
 
+    for param
+    {
+        echo $param
+    }
     
 
 
 
 }
-echo ${$((2 + 2))}
+parseCmd
 exit
 
 #check if theres any arguments from the command line
