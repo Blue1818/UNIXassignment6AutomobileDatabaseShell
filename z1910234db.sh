@@ -9,31 +9,35 @@
 new () 
 {
 
+    return 0
 }
 
 
 add ()
 {
-
+    
+    return 0
 }
 
 
 show ()
 {
 
+    return 0
 }
 
 
 delete()
 {
 
+    return 0
 }
 
 
 count()
 {
 
-
+    return 0
 }
 
 #check if theres any arguments from the command line
