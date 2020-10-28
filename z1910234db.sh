@@ -68,6 +68,8 @@ parseCmd ()
 
 
 }
+echo ${$((2 + 2))}
+exit
 
 #check if theres any arguments from the command line
 if [ $# -eq 0 ]
