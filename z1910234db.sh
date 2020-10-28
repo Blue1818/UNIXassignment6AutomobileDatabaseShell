@@ -27,37 +27,56 @@ show ()
 }
 
 
-delete()
+delete ()
 {
 
     return 0
 }
 
 
-count()
+count ()
 {
 
     return 0
 }
 
+testfile () 
+{
+    if [ $# -gt 0 ]; then
+        #if [[ -f $1 && -r ]]; then
+        if [ -f $1 && -r ]; then
+            echo "$1 is a readable file"
+        else
+            echo "$1 is not a readable file"
+        fi
+    fi
+}
+
+pram[0]=1
+pram[1]=2
+pram[2]=3
+pram[3]=$1
+echo ${pram[0]} ${pram[1]} ${pram[2]} "${pram[3]}"
+return 0
 #check if theres any arguments from the command line
-
+if [ $# -eq 0 ]
+then
 #If no arguments are passed:
-if [ $# -eq 0 ]; then
-	echo "success $0"
-    
     #Then we are in interactive mode:
     #Prompt the user for commands and assign them to the input string array
-    read -p "Enter command: " check cmd argLine
-    echo "$check $cmd $argLine"
+    read -p "Enter command: " dbname cmd argLine
+    
     #LOOP til input is quit
+    while [ dbname = "quit" ]
+    do 
         #Execute commands
 
 
 
         #Prompt the user for commands and assign them to the input string array
-
+        read -p "Enter command: " dbname cmd argLine
     #END LOOP
+    done
 
 else
 	echo "fail"
