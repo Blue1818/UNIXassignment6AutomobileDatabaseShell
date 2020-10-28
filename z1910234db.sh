@@ -45,9 +45,11 @@ count()
 #If no arguments are passed:
 if [ $# -ne 1 ]; then
 	echo "success $0"
+    
     #Then we are in interactive mode:
     #Prompt the user for commands and assign them to the input string array
-
+    read -p "Enter command: " check cmd argLine
+    echo"$check $cmd $argLine"
     #LOOP til input is quit
         #Execute commands
 
