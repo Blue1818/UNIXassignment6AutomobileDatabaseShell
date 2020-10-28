@@ -52,28 +52,25 @@ testfile ()
     fi
 }
 
-#Passes in argument Line and parses it into a global array of strings called param[]
-parseCmd ()
-{
-    #Varables:
-    #numC = number of characters in argument line.
-    local numC=${#1}
-    #Array of integers for index of spaces.
-    local index
-    #Total number of arguments
-    numArg=0
+# #Passes in argument Line and parses it into a global array of strings called param[]
+# parseCmd ()
+# {
+#     #Varables:
+#     #numC = number of characters in argument line.
+#     local numC=${#1}
+#     #Array of integers for index of spaces.
+#     local index
+#     #Total number of arguments (Global varable)
+#     numArg=0
 
-    for param
-    {
-        echo $param
-    }
-    
+#     for parm
+#     do
+#         param[$numArg]=$parm
+#         numArg=$(($numArg + 1))
+#     done
+# }
 
 
-
-}
-parseCmd
-exit
 
 #check if theres any arguments from the command line
 if [ $# -eq 0 ]
@@ -82,12 +79,16 @@ then
     #Then we are in interactive mode:
     #Prompt the user for commands and assign them to the input string array
     read -p "Enter command: " dbname cmd argLine
-     
+    
     #LOOP til input is quit
-    while [ dbname = "quit" ]
+    until [ $dbname = "quit" ]
     do 
-        #Execute commands
 
+        parseCmd ${argLine[*]}
+        #Execute command
+        $cmd $dbname ${argLine[*]}
+
+        
 
 
         #Prompt the user for commands and assign them to the input string array
@@ -101,7 +102,13 @@ else
 	numArg=0
     for parm
     do
+        #if its the first, assign to dbname
+
+        #if its the second, assign to cmd 
+
         param[numArg]=$parm
+
+        numArg=$(($numArg + 1))
     done
     #Execute commands
 
