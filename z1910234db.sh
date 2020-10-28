@@ -55,19 +55,17 @@ testfile ()
 #Passes in argument Line and parses it into a global array of strings called param[]
 parseCmd ()
 {
-    #numC = number of characters in argument line
+    #Varables:
+    #numC = number of characters in argument line.
     local numC=${#1}
-    local indexx[1]=8
-    index[0]=3
-    index[1]=8
-    echo ${index[0]} ${index[1]}
+    #Array of integers for index of spaces.
+    local index
+    
 
 
 
 
 }
-parseCmd "eh"
-exit
 
 #check if theres any arguments from the command line
 if [ $# -eq 0 ]
