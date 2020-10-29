@@ -8,19 +8,58 @@
 #   If not specified, use "Untitled database" instead.
 new () 
 {
-    #touch $1
-    echo flag
-    local space=" "
-    local input=$2$3$4$5$6
-    #input=${input:1:${#input}-2}
+    local input=$2
+    #Pipe input into file named $1:
     echo $input > $1
+    echo "New database created"
     return 0
 }
 
-
+#This function is used to add a record to an existing database file.
+#It will always take five parameters. If any of them are missing, it is an error.
+# The filename of the database to add the record to.
+# 2) The make of the car to be stored in this new record. It is a string that must be longer than zero
+# characters.
+# 3) The model of the car to be stored in this new record. It is a string that must be longer than zero
+# characters.
+# 4) The year of the car to be stored in this new record. It must be a four-digit number, greater than
+# 187 0 and smaller than 2025.
+# 5) The color of the car to be stored in this new record. It is a string that must be longer than zero
+# characters.
 add ()
 {
-    
+    local check
+    local error="error"
+    echo ${$1:?error} < check
+    if [ check = error ]
+    then
+        return 1
+    fi
+    echo ${$2:?error} < check
+    if [ check = error ]
+    then
+        return 2
+    fi
+    echo ${$3:?error} < check
+    if [ check = error ]
+    then
+        return 3
+    fi
+    echo ${$4:?error} < check
+    if [ check = error ]
+    then
+        return 4
+    fi
+    echo ${$5:?error} < check
+    if [ check = error ]
+    then
+        return 5
+    fi
+
+
+
+
+    echo "Successfully added a record to the database"
     return 0
 }
 
@@ -87,6 +126,7 @@ testfile ()
 # echo $1 $2 $4 "$3" 
 # echo $*
 
+#COME BACK TO INTERACTIVE MODE***
 #check if theres any arguments from the command line
 if [ $# -eq 0 ]
 then
