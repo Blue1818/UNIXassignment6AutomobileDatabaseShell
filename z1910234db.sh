@@ -84,8 +84,8 @@ testfile ()
 # }
 
 #THIS WORKS! the "string" quote stays in $3 when called as "$3"
-echo $1 $2 $4 "$3" 
-echo $*
+# echo $1 $2 $4 "$3" 
+# echo $*
 
 #check if theres any arguments from the command line
 if [ $# -eq 0 ]
@@ -93,7 +93,9 @@ then
 #If no arguments are passed:
     #Then we are in interactive mode:
     #Prompt the user for commands and assign them to the input string array
-    read -p "Enter command: " dbname cmd param1
+    read -p "Enter command: " dbname cmd param1 param2
+    echo "$param1"
+    exit
     #LOOP til input is quit
     until [ $dbname = "quit" ]
     do 
