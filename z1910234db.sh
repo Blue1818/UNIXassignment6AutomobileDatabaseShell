@@ -1,5 +1,8 @@
 #!/bin/bash
-
+	# Dale Westberg z1910234
+	# CSCI 330
+	# Assignment #3
+	# 9/18/20
 #define fuctions:
 
 #This function is used to create a new database file. It takes up to two parameters:
@@ -28,44 +31,88 @@ new ()
 # characters.
 add ()
 {
-    local check
-    local error="error"
-    echo ${$1:?error} < check
-    if [ check = error ]
-    then
-        return 1
-    fi
-    echo ${$2:?error} < check
-    if [ check = error ]
-    then
-        return 2
-    fi
-    echo ${$3:?error} < check
-    if [ check = error ]
-    then
-        return 3
-    fi
-    echo ${$4:?error} < check
-    if [ check = error ]
-    then
-        return 4
-    fi
-    echo ${$5:?error} < check
-    if [ check = error ]
-    then
-        return 5
-    fi
-
-
+    local printImg
+    printf -v printImg "%s, %s, %4d, %s" "$2" "$3" $4 "$5"
+    #print printImg to file
+    echo "$printImg" >> $1
 
 
     echo "Successfully added a record to the database"
     return 0
 }
 
+paramCheck ()
+{
+    # local check
+    # local error="error"
+    # echo ${$1:?error} < check
+    # if [ check = "error" ]
+    # then
+    #     return 1
+    # fi
+    # echo ${$2:?error} < check
+    # if [ check = "error" ]
+    # then
+    #     return 2
+    # fi
+    # echo ${$3:?error} < check
+    # if [ check = "error" ]
+    # then
+    #     return 3
+    # fi
+    # echo ${$4:?error} < check
+    # if [ check = "error" ]
+    # then
+    #     echo flag1
+    #     return 4
+    # fi
+    # echo ${$5:?error} < check
+    # if [ check = "error" ]
+    # then
+    #     echo flag5
+    #     return 5
+    # fi
+    return 0
+}
 
+# This will take up to four parameters, depending on the value of the second.
+# 1) The filename of the database to show the record(s) from. Must be the filename of a readable file.
+# 2) how many to show (one of all, single, or range)
 show ()
 {
+    # This function is used to show record(s) found in an existing database.
+    
+    #case statement for mode
+    case "$2" in
+#         all - Show all of the records, example follows:
+# Automobile Database
+# Ford, Mustang, 2008, blue with white stripes
+# Mitsubishi, Lancer, 2009, white
+# Toyota, Camry LE, 2004, black
+# Porsche, Cayenne S, 2007, red
+        #print file ($1) to standard output
+        all) cat $1
+        ;;
+        # – single - Shows the single record in the position indicated by the third parameter. Notice that
+        # record #1 is on the second line, after the label.
+        
+        single) 
+        local val
+        local temp=$(($3 + 1))
+        printf -v val "%d p" $temp
+        sed -n -e "$val" $1
+        ;;
+        # – range - Show the records in the range starting at the position indicated by the third parameter,
+        # up to and including the record indicated by the fourth.
+        range) 
+        local val1
+        local temp1=$(($3 + 1))
+        local temp2=$(($4 + 1))
+        printf -v val1 "%d, %d p" $temp1 $temp2
+        sed -n "$val1" $1
+        ;;
+    esac
+
 
     return 0
 }
