@@ -83,7 +83,7 @@ testfile ()
 #     fi
 # }
 
-echo $1 $2 $3 $4
+echo $1 $2 "$3" $4
 echo $*
 
 #check if theres any arguments from the command line
