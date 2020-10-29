@@ -10,10 +10,10 @@ new ()
 {
     #touch $1
     echo flag
+    local space=" "
     local input=$2$3$4$5$6
-    local length=${#input}
-    length=$((length-2))
-    echo ${$input:1:$length} > $1
+    #input=${input:1:${#input}-2}
+    echo $input > $1
     return 0
 }
 
@@ -75,7 +75,16 @@ testfile ()
 #     done
 # }
 
+# setParam ()
+# {
+#     if [ ${param1:0:1} -eq "\"" ]
+#     then
+#         while [ ${param}]
+#     fi
+# }
 
+echo $1 $2 $3 $4
+echo $*
 
 #check if theres any arguments from the command line
 if [ $# -eq 0 ]
@@ -83,16 +92,20 @@ then
 #If no arguments are passed:
     #Then we are in interactive mode:
     #Prompt the user for commands and assign them to the input string array
-    read -p "Enter command: " dbname cmd param1 param2 param3 param4 param5
-
-
-    
+    read -p "Enter command: " dbname cmd param1
     #LOOP til input is quit
     until [ $dbname = "quit" ]
     do 
-        $cmd $dbname $param1 $param2 $param3 $param4 $param5
+        # case "$param1" in
+        #     new) new $dbname $param1
+        #     ;;
+        #     add) setParam $param1 4; add $dbname $param1 $param2 $param3 $param4
+        #     ;;
+        
+        # esac
+        $cmd $dbname $param1 $param2 $param3 $param4
         #Prompt the user for commands and assign them to the input string array
-        read -p "Enter command: " dbname cmd argLine
+        read -p "Enter command: " dbname cmd param1
     #END LOOP
     done
 else
@@ -104,16 +117,15 @@ else
         if [ $head -eq 0 ]
         then
             dbname=$parm
-        fi
         #if its the second, assign to cmd 
-        if [ $head -eq 1 ]
+        elif [ $head -eq 1 ]
         then
             cmd=$parm
-        fi
+        else
         #else assign to param array
         param[$head]=$parm
-
-        head=$(($head + 1))
+        fi
+        head=$((head + 1))
     done
     #Execute commands
     $cmd $dbname ${param[0]} ${param[2]} ${param[3]} ${param[4]} ${param[5]}
