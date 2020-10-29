@@ -83,7 +83,8 @@ testfile ()
 #     fi
 # }
 
-echo $1 $2 "$3" $4
+#THIS WORKS! the "string" quote stays in $3 when called as "$3"
+echo $1 $2 $4 "$3" 
 echo $*
 
 #check if theres any arguments from the command line
