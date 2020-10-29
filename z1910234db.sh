@@ -113,25 +113,31 @@ then
     done
 else
     #Load command line arguments
-    head=0
-    for parm
-    do
-        #if its the first, assign to dbname
-        if [ $head -eq 0 ]
-        then
-            dbname=$parm
-        #if its the second, assign to cmd 
-        elif [ $head -eq 1 ]
-        then
-            cmd=$parm
-        else
-        #else assign to param array
-        param[$head]=$parm
-        fi
-        head=$((head + 1))
-    done
+    # head=0
+    # for parm
+    # do
+    #     #if its the first, assign to dbname
+    #     if [ $head -eq 0 ]
+    #     then
+    #         dbname=$parm
+    #     #if its the second, assign to cmd 
+    #     elif [ $head -eq 1 ]
+    #     then
+    #         cmd=$parm
+    #     else
+    #     #else assign to param array
+    #     param[$head]=$parm
+    #     fi
+    #     head=$((head + 1))
+    # done
+    dbname="$1"
+    cmd="$2"
+    param[0]="$3"
+    param[1]="$4"
+    param[2]="$5"
+    param[3]="$6"
     #Execute commands
-    $cmd $dbname ${param[0]} ${param[2]} ${param[3]} ${param[4]} ${param[5]}
+    $cmd $dbname "${param[0]}" "${param[1]}" "${param[2]}" "${param[3]}"
 fi #End If
 
 #exit program
