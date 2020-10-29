@@ -8,7 +8,12 @@
 #   If not specified, use "Untitled database" instead.
 new () 
 {
-
+    #touch $1
+    echo flag
+    local input=$2$3$4$5$6
+    local length=${#input}
+    length=$((length-2))
+    echo ${$input:1:$length} > $1
     return 0
 }
 
@@ -52,7 +57,7 @@ testfile ()
     fi
 }
 
-# #Passes in argument Line and parses it into a global array of strings called param[]
+#Passes in argument Line and parses it into a global array of strings called param[]
 # parseCmd ()
 # {
 #     #Varables:
@@ -78,40 +83,40 @@ then
 #If no arguments are passed:
     #Then we are in interactive mode:
     #Prompt the user for commands and assign them to the input string array
-    read -p "Enter command: " dbname cmd argLine
+    read -p "Enter command: " dbname cmd param1 param2 param3 param4 param5
+
+
     
     #LOOP til input is quit
     until [ $dbname = "quit" ]
     do 
-
-        parseCmd ${argLine[*]}
-        #Execute command
-        $cmd $dbname ${argLine[*]}
-
-        
-
-
+        $cmd $dbname $param1 $param2 $param3 $param4 $param5
         #Prompt the user for commands and assign them to the input string array
         read -p "Enter command: " dbname cmd argLine
     #END LOOP
     done
-
 else
-	echo "fail"
-    #Load command line arguments 
-	numArg=0
+    #Load command line arguments
+    head=0
     for parm
     do
         #if its the first, assign to dbname
-
+        if [ $head -eq 0 ]
+        then
+            dbname=$parm
+        fi
         #if its the second, assign to cmd 
+        if [ $head -eq 1 ]
+        then
+            cmd=$parm
+        fi
+        #else assign to param array
+        param[$head]=$parm
 
-        param[numArg]=$parm
-
-        numArg=$(($numArg + 1))
+        head=$(($head + 1))
     done
     #Execute commands
-
+    $cmd $dbname ${param[0]} ${param[2]} ${param[3]} ${param[4]} ${param[5]}
 fi #End If
 
 #exit program
